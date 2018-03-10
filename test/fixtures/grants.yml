@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2018-03-09 03:04:25
+  book: one
+  subscriber: one
+
+two:
+  date: 2018-03-09 03:04:25
+  book: two
+  subscriber: two

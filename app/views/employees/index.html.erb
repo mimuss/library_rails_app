@@ -1,0 +1,26 @@
+
+<div class="my-4">
+	<h1>Сотрудники</h1>
+	<%= link_to "Добавить", new_library_employee_path(@library) %>
+</div>
+
+
+<% @employees.each do |employee| %>
+
+	<div class="card mb-4">
+		<div class="card-body">
+			<h4 class="card-title"><%= employee.name %> <%= employee.surname %></h4>
+			<p class="card-text">Должность: <span class="text-muted"><%= employee.position %></span></p>
+		</div>
+		<div class="card-footer">
+			<%= link_to 'Редактировать', edit_library_employee_path(@library, employee), :class => "card-link" %>
+
+			<span style="float: right">
+				<%= link_to 'Удалить', library_employee_path(@library, employee), :class => "card-link text-danger", 
+			 method: :delete, data: { confirm: "Are you sure to delete?" } %>
+			</span>
+			
+			
+		</div>
+	</div>
+<% end %>

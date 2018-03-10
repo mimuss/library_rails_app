@@ -1,0 +1,25 @@
+<div class="my-4">
+	<h1>Книги</h1>
+	<%= link_to 'Добавить', new_library_book_path %>
+</div>
+
+<% @books.each do |book| %>
+	<div class="card mb-4">
+		<div class="card-body">
+			<h3 class="card-title"><%= book.name %></h3>
+			<p class="card-text"><%= book.cipher %></p>
+		</div>
+		<div class="card-footer">
+			<span>
+				<%= link_to 'Редактировать', edit_library_book_path(book.library, book), :class => "card-link" %>
+			</span>
+			<span style="float: right">
+				<%= link_to 'Выдачи', book_grants_path(book), :class => "card-link" %>
+				<%= link_to 'Удалить', [book.library, book], :class => "card-link text-danger",
+				 method: :delete, data: { confirm: "Are you sure to delete?" } %>
+			</span>
+		</div>
+	</div>
+<% end %>
+
+

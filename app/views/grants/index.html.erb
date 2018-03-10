@@ -1,0 +1,20 @@
+<div class="my-4">
+	<h1>Выдачи</h1>
+	<%= link_to 'Добавить', new_grant_path %>
+</div>
+<% @grants.each do |grant| %>
+	<div class="card mb-4">
+		<div class="card-body">
+			<h3 class="card-title"><%= grant.book.name %></h3>
+			<p class="card-text"><%= grant.subscriber.name %></p>
+		</div>
+		<div class="card-footer ">
+			<spane class="text-muted">Дата выдачи: <%= grant.date.strftime('%F') %></spane>
+			<span style="float: right">
+				<%= link_to "Редактировать", edit_grant_path(grant), :class => "card-link"  %>
+				<%= link_to "Удалить", grant_path(grant), method: "delete", :class => "card-link text-danger", 
+				 data: { confirm: "Are you sure to delete?" } %>
+			</span>
+		</div>
+	</div>
+<% end %>

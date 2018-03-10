@@ -1,0 +1,23 @@
+<div class="my-4">
+	<h1>Абоненты</h1>
+	<%= link_to 'Добавить', new_library_subscriber_path(@library) %>
+</div>
+<% @subscribers.each do |subscriber| %>
+	<div class="card mb-4">
+		<div class="card-body">
+			<h4 class="card-title"><%= subscriber.name %> <%= subscriber.surname %></h4>
+			<p class="card-text">Адрес: <span class="text-muted"><%= subscriber.address %></span></p>
+			<p class="card-text">Номер телефона: <span class="text-muted"><%= subscriber.phone %></span></p>
+		</div>
+		<div class="card-footer">
+			<span>
+				<%= link_to "Редактировать", edit_library_subscriber_path(@library, subscriber), :class => "card-link" %>
+			</span>
+			<span style="float: right">
+				<%= link_to "Выдачи", subscriber_grants_path(subscriber), :class => "card-link" %>
+				<%= link_to "Удалить", library_subscriber_path(@library, subscriber), :class => "card-link text-danger",
+				method: "delete", data: { confirm: "Are you sure to delete?" } %>		
+			</span>
+		</div>
+	</div>
+<% end %>

@@ -1,0 +1,37 @@
+<%= form_with model: @library, local: true do |form| %>
+ 
+  <% if @library.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@library.errors.count, "error") %> prohibited
+        this library from being saved:
+      </h2>
+      <ul>
+        <% @library.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <div class='form-group'>
+    <%= form.label :name, "Имя" %><br>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+ 
+  <div class="form-group">
+    <%= form.label :address, "Фамилия" %><br>
+    <%= form.text_field:address, class: "form-control" %>
+  </div>
+ 
+  <div class="form-group">
+    <%= form.label :description, "Должность" %><br>
+    <%= form.text_area :description, class: "form-control", rows: 5 %>
+  </div>
+ 
+
+  <div class="form-group">
+    <%= form.submit "Потвердить", class: "btn btn-primary" %>
+  </div>
+ 
+<% end %>

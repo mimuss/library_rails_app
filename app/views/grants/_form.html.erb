@@ -1,0 +1,33 @@
+<%= form_with model: @grant, local: true do |form| %>
+ 
+  <% if @grant.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@grant.errors.count, "error") %> prohibited
+        this grant from being saved:
+      </h2>
+      <ul>
+        <% @grant.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <div class="form-group">
+    <%= form.label :date, "Дата выдачи" %><br>
+    <%= form.date_field :date, class: "form-control" %>
+  </div>
+ 
+ <div class="form-group">
+  <%= form.collection_select(:book_id, @books, :id, :name, {prompt: "Выберите книгу"}, {class: "form-control"} ) %>
+ </div>
+
+ <div class="form-group">
+ 	<%= form.collection_select(:subscriber_id, @subscribers, :id, :name, {prompt: "Выберите абонента"}, {class: "form-control"} )%>
+  </div>
+  <div class="form-group">
+    <%= form.submit "Потвердить", class: "btn btn-primary" %>
+  </div>
+ 
+<% end %>

@@ -1,0 +1,38 @@
+<%= form_with(model: [@library, @library.employees.build], local: true) do |form| %> 
+ 
+  <% if @employee.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@employee.errors.count, "error") %> prohibited
+        this employee from being saved:
+      </h2>
+      <ul>
+        <% @employee.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+ <div class="form-group">
+    <%= form.label :name, "Имя" %><br>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+ 
+
+  <div class="form-group">
+    <%= form.label :surname, "Фамилия" %><br>
+    <%= form.text_field :surname, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :position, "Должность" %><br>
+    <%= form.text_field :position, class: "form-control" %>
+  </div>
+ 
+
+  <div class="form-group">
+    <%= form.submit "Потвердить", class: "btn btn-primary" %>
+  </div>
+ 
+<% end %>
