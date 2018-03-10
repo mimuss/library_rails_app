@@ -22,6 +22,8 @@ class GrantsController < ApplicationController
 
 	def create
 		@grant = Grant.new(grant_params)
+		@books = Book.all
+		@subscribers = Subscriber.all
 		if @grant.save
 			redirect_to grants_path
 		else
