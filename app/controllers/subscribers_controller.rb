@@ -37,13 +37,14 @@ class SubscribersController < ApplicationController
 
 	def destroy
 		@library = library
+		Grant.where(subscriber_id: params[:id]).destroy_all
 		@library.subscribers.find(params[:id]).destroy
 		redirect_to library_subscribers_path(@library)
 	end
 
 	private 
 		def subscriber_params
-			params.require(:subscriber).permit(:surname, :name, :address, :phone)
+			params.require(:subscriber).permit(:surname, :name, :address, :phone, :patronymic, :number)
 		end
 
 		def library

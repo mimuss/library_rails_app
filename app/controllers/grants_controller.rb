@@ -1,62 +1,83 @@
 class GrantsController < ApplicationController
 
-	def list_by_book
-		@grants = Grant.where(book_id: params[:book_id])
-		render 'index'
-	end
-
-	def list_by_subscriber
-		@grants = Grant.where(subscriber_id: params[:subscriber_id])
-		render 'index'
-	end
-
 	def index
-		@grants = Grant.all
+		if (params.has_key?(:book_id)) 
+			@grants = Grant.where(book_id: params[:book_id])
+			@book = Book.find(params[:book_id])
+		elsif (params.has_key?(:subscriber_id))
+			@grants = Grant.where(subscriber_id: params[:subscriber_id])
+			@subscriber = Subscriber.find(params[:subscriber_id])
+		end
 	end
 
 	def new
 		@grant = Grant.new
-		@books = Book.all
-		@subscribers = Subscriber.all
-	end
-
-	def create
-		@grant = Grant.new(grant_params)
-		@books = Book.all
-		@subscribers = Subscriber.all
-		if @grant.save
-			redirect_to grants_path
-		else
-			render 'new'
+		if (params.has_key?(:book_id))
+			@book = Book.find(params[:book_id])
+			@subscribers = @book.library.subscribers
+		elsif (params.has_key?(:subscriber_id))
+			@subscriber = Subscriber.find(params[:subscriber_id])
+			@books = @subscriber.library.books	
 		end
 	end
 
+	def create
+		if (params.has_key?(:book_id))
+			@book = Book.find(params[:book_id])
+			@grant = Grant.new(params.require(:grant).permit(:subscriber_id, :date, :date_of_return))
+			@grant.book = @book
+			@subscribers = @book.library.subscribers
+			if @grant.save
+				redirect_to library_book_grants_path(@book.library, @book)
+			else
+				render 'new'
+			end
+		elsif (params.has_key?(:subscriber_id)) 
+			@subscriber = Subscriber.find(params[:subscriber_id])
+			@grant = Grant.new(params.require(:grant).permit(:book_id, :date, :date_of_return))
+			@grant.subscriber = @subscriber
+			if @grant.save
+				redirect_to library_subscriber_grants_path(@subscriber.library, @subscriber)
+			else
+				render 'new'
+			end
+		end		
+	end
+
 	def edit
-		@grant = library
-		@books = Book.all
-		@subscribers = Subscriber.all
+		@grant = Grant.find(params[:id])
+		if (params.has_key?(:book_id))
+			@book = Book.find(params[:book_id])
+			@subscribers = @book.library.subscribers
+		elsif (params.has_key?(:subscriber_id))
+			@subscriber = Subscriber.find(params[:subscriber_id])
+			@books = @subscriber.library.books
+		end
 	end
 
 	def update
-		if library.update(grant_params)
-			redirect_to grants_path
-		else
-			render 'edit'
+		@grant = Grant.find(params[:id])
+		if (params.has_key?(:book_id) and @grant.update(params.require(:grant).permit(:subscriber_id, :date, :date_of_return))) 
+			@book = Book.find(params[:book_id])
+			redirect_to library_book_grants_path(@book.library, @book)
+		elsif (params.has_key?(:subscriber_id) and @grant.update(params.require(:grant).permit(:book_id, :date, :date_of_return)))
+			@subscriber = Subscriber.find(params[:subscriber_id])
+			redirect_to library_subscriber_grants_path(@subscriber.library, @subscriber)
 		end
 	end
 
 	def destroy
-		library.destroy
-		redirect_to grants_path
+		if (params.has_key?(:book_id))
+			Grant.find(params[:id]).destroy
+			@book = Book.find(params[:id])
+			redirect_to library_book_grants_path(@book.library, @book)
+		elsif (params.has_key?(:subscriber_id))
+			Grant.find(params[:id]).destroy
+			@subscriber = Subscriber.find(params[:subscriber_id])
+			redirect_to library_subscriber_grants_path(@subscriber.library, @subscriber)
+		end
 	end
 
 	private 
 
-		def library 
-			Grant.find(params[:id])
-		end
-
-		def grant_params
-			params.require("grant").permit(:subscriber_id, :book_id, :date)
-		end
 end

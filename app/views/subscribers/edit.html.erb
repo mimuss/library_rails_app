@@ -1,39 +1,11 @@
 <h1>Редактировать абонент</h1>
 
 <%= form_for @subscriber, url: library_subscriber_path(@library, @subscriber), local: true do |form| %> 
-<% if @subscriber.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@subscriber.errors.count, "error") %> prohibited
-        this subscriber from being saved:
-      </h2>
-      <ul>
-        <% @subscriber.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-<div class="form-group">
-    <%= form.label :name, "Имя" %><br>
-    <%= form.text_field :name, :class => "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :surname, "Фамилия" %><br>
-    <%= form.text_field :surname, :class => "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :address, "Адрес" %><br>
-    <%= form.text_field :address, :class => "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :phone, "Номер телефона"%><br>
-    <%= form.number_field :phone, :class => "form-control" %>
-  </div>
+ <%= render 'layouts/form_error', value: @subscriber %>
 
-  <div class="form-group">
-    <%= form.submit "Потвердить", :class => "btn btn-primary" %>
-  </div>
+  <%= render 'form_elements', form: form %> 
+
+
  
 <% end %>

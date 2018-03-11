@@ -17,8 +17,9 @@ class BooksController < ApplicationController
 
 	def update
 		@book = Book.find(params[:id])
+		@libraries = Library.all
 		@library = Library.find(params[:library_id])
-		if @book.update(book_params_for_update)
+		if @book.update(book_params)
 			redirect_to library_books_path(@library)
 		else
 			render 'edit'
@@ -37,17 +38,14 @@ class BooksController < ApplicationController
 
 	def destroy 
 		@library = Library.find(params[:library_id])
+		Grant.where(book_id: params[:id]).destroy_all
 		@library.books.find(params[:id]).destroy
 		redirect_to library_books_path(@library)
 	end
 
 	private
 
-		def book_params_for_update
-			params.require(:book).permit(:name, :cipher, :library_id)
-		end
-
 		def book_params
-			params.require(:book).permit(:name, :cipher)
+			params.require(:book).permit(:name, :cipher, :author, :publisher, :published_date, :price, :release_date)
 		end
 end

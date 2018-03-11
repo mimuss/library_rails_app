@@ -1,19 +1,34 @@
 <div class="my-4">
 	<h1>Выдачи</h1>
-	<%= link_to 'Добавить', new_grant_path %>
+	<%  if defined?(@book)  %>
+		<%= link_to 'Добавить', new_library_book_grant_path(@book.library, @book) %>
+	<% end %>
+	<% if defined?(@subscriber) %>
+		<%= link_to 'Добавить', new_library_subscriber_grant_path(@subscriber.library, @subscriber) %>
+	<% end %>
+	
 </div>
 <% @grants.each do |grant| %>
 	<div class="card mb-4">
 		<div class="card-body">
 			<h3 class="card-title"><%= grant.book.name %></h3>
-			<p class="card-text"><%= grant.subscriber.name %></p>
+			<p class="card-text"><%= grant.subscriber.name %> <%= grant.subscriber.surname %></p>
 		</div>
 		<div class="card-footer ">
-			<spane class="text-muted">Дата выдачи: <%= grant.date.strftime('%F') %></spane>
+			<spane class="text-muted">Дата выдачи: <%= grant.date.strftime('%d-%m-%Y') %>  
+				<% if grant.date_of_return.present? %> Дата возврата: <%= grant.date_of_return.strftime('%d-%m-%Y') %> <% end %> </spane>
 			<span style="float: right">
-				<%= link_to "Редактировать", edit_grant_path(grant), :class => "card-link"  %>
-				<%= link_to "Удалить", grant_path(grant), method: "delete", :class => "card-link text-danger", 
-				 data: { confirm: "Are you sure to delete?" } %>
+				<% if defined?(@book) %>
+					<%= link_to "Редактировать", edit_library_book_grant_path(@book.library, @book, grant), :class => "card-link" %>
+					<%= link_to "Удалить", library_book_grant_path(@book.library, @book, grant),:class => "card-link text-danger",
+					 method: :delete, data: { confirm: "Вы точно хотите удалить?" } %>
+				<% end %>
+				<% if defined?(@subscriber) %>
+					<%= link_to "Редактировать", edit_library_subscriber_grant_path(@subscriber.library, @subscriber, grant), 
+					:class => "card-link" %>
+					<%= link_to "Удалить", library_subscriber_grant_path(@subscriber.library, @subscriber, grant), :class => "card-link text-danger", method: :delete, data: { confirm: "Вы точно хотите удалить?" } %>
+				<% end %>
+				
 			</span>
 		</div>
 	</div>

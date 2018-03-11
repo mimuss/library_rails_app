@@ -2,35 +2,10 @@
 
 <%= form_for @employee, url: library_employee_path(@library, @employee), local: true do |form| %> 
 
-<% if @employee.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@employee.errors.count, "error") %> prohibited
-        this employee from being saved:
-      </h2>
-      <ul>
-        <% @employee.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= render 'layouts/form_error', value: @employee %>
 
-  <div class="form-group">
-    <%= form.label :name, "Имя" %><br>
-    <%= form.text_field :name, class: "form-control" %>
-  </div>
+ <%= render 'form_elements', form: form %>
  
-
-  <div class="form-group">
-    <%= form.label :surname, "Фамилия" %><br>
-    <%= form.text_field :surname, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :position, "Должность" %><br>
-    <%= form.text_field :position, class: "form-control" %>
-  </div>
 
   <div class="form-group">
      <%= form.collection_select(:library_id, @libraries, :id, :name, {prompt: "Выберите библиотеку"}, {class: "form-control"} ) %>

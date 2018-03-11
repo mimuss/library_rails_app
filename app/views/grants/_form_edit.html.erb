@@ -1,12 +1,12 @@
 <% if defined?(@book) %>
-  <%= form_for @grant, url: library_book_grants_path(@book.library, @book, @grant), local: true do |form| %> 
+  <%= form_for @grant, url: library_book_grant_path(@book.library, @book, @grant), local: true do |form| %> 
     <%= render 'formerror' %>
     <%= render 'form_elements', form: form %> 
   <% end %>
 <% end %>
 
 <% if defined?(@subscriber) %>
-  <%= form_for @grant, url: library_subscriber_grants_path(@subscriber.library, @subscriber, @grant), local: true do |form| %>
+  <%= form_for @grant, url: library_subscriber_grant_path(@subscriber.library, @subscriber, @grant), local: true do |form| %>
     <%= render 'formerror' %>
     <%= render 'form_elements', form: form %> 
   <% end %>

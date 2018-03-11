@@ -1,0 +1,36 @@
+<div class="form-group">
+    <%= form.label :name, "Имя" %><br>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+    <div class="form-group">
+    <%= form.label :surname, "Фамилия" %><br>
+    <%= form.text_field :surname, class: "form-control" %>
+  </div>
+ 
+  <div class="form-group">
+    <%= form.label :patronymic, "Отчество" %><br>
+    <%= form.text_field :patronymic, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :birthday, "Дата рождения" %><br>
+    <%= form.date_field :birthday, class: "form-control", max: Date.today %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :date_of_employment, "Дата принятия на работу" %><br>
+    <%= form.date_field :date_of_employment, class: "form-control", max: Date.today %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :education, "Образование" %><br>
+    <%= form.text_field :education, class: "form-control" %>
+  </div>
+
+
+
+  <div class="form-group">
+    <%= form.label :position, "Должность" %><br>
+    <%= form.text_field :position, class: "form-control" %>
+  </div>
