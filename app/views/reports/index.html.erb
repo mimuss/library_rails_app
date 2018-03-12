@@ -5,23 +5,28 @@
 
 <div>
 	<form action="/reports" method="get">
-		<div class="form-group">
-			<select id="models" class="form-control" name="model">
-				<option value="books">Книги</option>
-				<option value="employees">Сотрудники</option>
-				<option value="subscribers">Абоненты</option>
-			</select>
+		<div class="form-group row">
+			<label for="models" class="col-sm-1 col-form-label">Моделька</label>
+			<div class="col-sm-3">
+				<select id="models" class="form-control"  name="model">
+					<option value="books">Книги</option>
+					<option value="employees">Сотрудники</option>
+					<option value="subscribers">Абоненты</option>
+				</select>
+			</div>
+			<label for="do" class="col-sm-1 col-form-label">Действие</label>
+			<div class="col-sm-3">
+				<select id="do" class="form-control" name="do">
+					<option value="created_at DESC">Новые</option>
+					<option value="updated_at DESC">Обновленные недавно</option>
+					<option value="created_at">Старые</option>
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<input type="submit" name="commit" value="Потвердить" class="btn btn-primary">
+			</div>
 		</div>
-		<div class="form-group">
-			<select id="do" class="form-control" name="do">
-				<option value="created_at DESC">Новые</option>
-				<option value="updated_at DESC">Обновленные недавно</option>
-				<option value="created_at">Старые</option>
-			</select>
-		</div>
-		<div class="form-group">
-			<input type="submit" name="commit" value="Потвердить" class="btn btn-primary">
-		</div>
+		
 	</form>
 </div>
 
