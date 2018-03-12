@@ -1,9 +1,6 @@
 <% if value.errors.any? %>
     <div id="error_explanation">
-      <h2>
-        <%= pluralize(value.errors.count, "error") %> prohibited
-        this value from being saved:
-      </h2>
+      <h2>Ошибки: </h2>
       <ul>
         <% value.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>

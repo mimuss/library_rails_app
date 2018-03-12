@@ -36,6 +36,7 @@ class GrantsController < ApplicationController
 			@subscriber = Subscriber.find(params[:subscriber_id])
 			@grant = Grant.new(params.require(:grant).permit(:book_id, :date, :date_of_return))
 			@grant.subscriber = @subscriber
+			@books = @subscriber.library.books
 			if @grant.save
 				redirect_to library_subscriber_grants_path(@subscriber.library, @subscriber)
 			else
@@ -69,7 +70,7 @@ class GrantsController < ApplicationController
 	def destroy
 		if (params.has_key?(:book_id))
 			Grant.find(params[:id]).destroy
-			@book = Book.find(params[:id])
+			@book = Book.find(params[:book_id])
 			redirect_to library_book_grants_path(@book.library, @book)
 		elsif (params.has_key?(:subscriber_id))
 			Grant.find(params[:id]).destroy

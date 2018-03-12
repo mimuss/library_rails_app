@@ -1,0 +1,24 @@
+
+<div class="my-4">
+	<h1>Отчеты</h1>
+</div>
+
+<div>
+	<form action="/reports" method="get">
+		<div class="form-group">
+			<select class="form-control" name="model">
+				<option value="books">Книги</option>
+				<option value="employees">Сотрудники</option>
+				<option value="subscribers">Абоненты</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<input type="submit" name="commit" value="Потвердить" class="btn btn-primary">
+		</div>
+	</form>
+</div>
+
+<% if defined?(@books) %>
+	<%= render 'books/main_content' %>
+<% end %>
+

@@ -1,44 +1,11 @@
-<div class="my-4">
-	<h1>Книги</h1>
-	<%= link_to 'Добавить', new_library_book_path %>
-</div>
 
-<% @books.each do |book| %>
-	<div class="card mb-4">
-		<div class="card-body">
-			<h3 class="card-title"><%= book.name %></h3>
-			<p> <span class="text-muted">#<%= book.cipher %>
-				<% if book.author.present? %>, 
-				<%= book.author %>
-			<% end %>
-			<% if book.publisher.present? %>
-				, <%= book.publisher %>
-			<% end %>
-			</span>
-			 </p>
-			<% if book.published_date.present? %>
-				<p class="card-text">Год издания: <span class="text-muted"><%= book.published_date.strftime('%d-%m-%Y') %></span> 
-					<% if book.release_date.present? %>, 
-						Год поступления: <span class="text-muted"> <%= book.release_date.strftime('%d-%m-%Y') %></span>
-					<% end %>
-				</p>
-			<% end %>
-			<% if book.price.present? %>
-				<p class="card-text">Цена: <span class="text-muted"><%= book.price %></span> </p>
-			<% end %>
-			
-		</div>
-		<div class="card-footer">
-			<span>
-				<%= link_to 'Редактировать', edit_library_book_path(book.library, book), :class => "card-link" %>
-			</span>
-			<span style="float: right">
-				<%= link_to 'Выдачи', library_book_grants_path(book.library, book), :class => "card-link" %>
-				<%= link_to 'Удалить', [book.library, book], :class => "card-link text-danger",
-				 method: :delete, data: { confirm: "Are you sure to delete?" } %>
-			</span>
-		</div>
+	<div class="my-4">
+		<h1>Книги</h1>
+		<% if defined?(@library) %>
+			<%= link_to 'Добавить', new_library_book_path %>
+		<% end %>
 	</div>
-<% end %>
 
+
+<%= render 'main_content' %>
 

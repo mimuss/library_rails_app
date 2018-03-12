@@ -1,9 +1,9 @@
 class Subscriber < ApplicationRecord
 
-	validates :name, presence: true, length: {minimum: 2}
-	validates :surname, presence: true, length: {minimum: 2}
-	validates :address, length: { minimum: 3}
-	validates :number, presence: true, uniqueness: true
+	validates :name, length: { minimum: 2, too_short: "слишком короткое (минимум %{count} символа)"}
+	validates :surname, length: { minimum: 2, too_short: "слишком короткая (минимум %{count} символа)"}
+	validates :address, length: { minimum: 3, too_short: "слишком короткий (минимум %{count} символа)"}
+	validates :number, uniqueness: { message: "должен быть уникальным"}
 
 
   belongs_to :library

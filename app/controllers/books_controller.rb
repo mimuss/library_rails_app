@@ -1,8 +1,16 @@
 class BooksController < ApplicationController
 
+	def all_books
+		@books = Book.all
+		render 'index'
+	end
+
 	def index
 		@books = Book.where(library_id: params[:library_id])
+		@library = Library.find(params[:library_id])
 	end
+
+	
 
 	def new
 		@book = Book.new

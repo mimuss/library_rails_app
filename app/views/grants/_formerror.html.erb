@@ -1,13 +1,8 @@
 <% if @grant.errors.any? %>
     <div id="error_explanation">
-      <h2>
-        <%= pluralize(@grant.errors.count, "error") %> prohibited
-        this grant from being saved:
-      </h2>
+      <h2>Ошибки:</h2>
       <ul>
-        <% @grant.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
+        <li><%= @grant.errors.full_messages[0] %></li>
       </ul>
     </div>
   <% end %>

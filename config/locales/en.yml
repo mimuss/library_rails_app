@@ -30,4 +30,26 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      library:
+        number: "Номер"
+        address: "Адрес"
+        name: "Имя"
+      book:
+        name: "Имя"
+        cipher: "Код"
+      employee:
+        name: "Имя"
+        surname: "Фамилия"
+        position: "Должность"
+      subscriber:
+        name: "Имя"
+        surname: "Фамилия"
+        address: "Адрес"
+      grant:
+        date: "Дата выдачи"
+
+
+# blank
+
