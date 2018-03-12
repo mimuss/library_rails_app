@@ -10,8 +10,6 @@ class BooksController < ApplicationController
 		@library = Library.find(params[:library_id])
 	end
 
-	
-
 	def new
 		@book = Book.new
 		@library = Library.find(params[:library_id])

@@ -1,0 +1,29 @@
+<% @employees.each do |employee| %>
+
+	<div class="card mb-4">
+		<div class="card-body">
+			<h4 class="card-title"> <%= employee.surname %> <%= employee.name %> <%= employee.patronymic %></h4>
+			<p class="card-text">Должность: <span class="text-muted"><%= employee.position %></span></p>
+			<% if employee.birthday.present? %>
+				<p class="card-text">Дата рождения <span class="text-muted"><%= employee.birthday.strftime('%d-%m-%Y') %></span> </p>
+			<% end %>
+			<% if employee.date_of_employment.present? %>
+				<p class="card-text">Дата принятия на работу: 
+					<span class="text-muted"> <%= employee.date_of_employment.strftime('%d-%m-%Y') %></span></p>
+			<% end %>
+			<% if employee.education.present? %>
+				<p class="card-text">Образование: <span class="text-muted"> <%= employee.education %></span></p>
+			<% end %>
+			
+		</div>
+		<div class="card-footer">
+			<%= link_to 'Редактировать', edit_library_employee_path(employee.library, employee), :class => "card-link" %>
+			<span style="float: right">
+				<%= link_to 'Удалить', library_employee_path(employee.library, employee), :class => "card-link text-danger", 
+			 method: :delete, data: { confirm: "Are you sure to delete?" } %>
+			</span>
+			
+			
+		</div>
+	</div>
+<% end %>

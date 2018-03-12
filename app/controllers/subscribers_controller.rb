@@ -39,12 +39,12 @@ class SubscribersController < ApplicationController
 		@library = library
 		Grant.where(subscriber_id: params[:id]).destroy_all
 		@library.subscribers.find(params[:id]).destroy
-		redirect_to library_subscribers_path(@library)
+		redirect_to request.env["HTTP_REFERER"]
 	end
 
 	private 
 		def subscriber_params
-			params.require(:subscriber).permit(:surname, :name, :address, :phone, :patronymic, :number)
+			params.require(:subscriber).permit(:number, :name, :surname, :patronymic, :address, :phone)
 		end
 
 		def library

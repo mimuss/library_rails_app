@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   get '/all_employees' => 'employees#all_employees', as: 'all_employees'
   get '/all_books' => 'books#all_books', as: 'all_books'
+  get '/reports/ajax' => 'reports#ajax', as: 'reports_ajax'
 
 end
 
