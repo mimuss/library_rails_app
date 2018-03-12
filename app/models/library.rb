@@ -5,9 +5,9 @@ class Library < ApplicationRecord
 	validates :number, uniqueness: { message: "должен быть уникальным"}
 
 
-	has_many :books
-	has_many :employees
-	has_many :subscribers
+	has_many :books, dependent: :delete_all
+	has_many :employees, dependent: :delete_all
+	has_many :subscribers, dependent: :delete_all
 
 	private 
 		
