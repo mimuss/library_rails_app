@@ -25,7 +25,7 @@ class EmployeesController < ApplicationController
 		@library = Library.find(params[:library_id])
 		@employee = @library.employees.find(params[:id])
 		@libraries = Library.all
-		if @employee.update(employee_params_for_update)
+		if @employee.update(employee_params)
 			redirect_to library_employees_path(@library)
 		else
 			render 'edit'
@@ -51,13 +51,9 @@ class EmployeesController < ApplicationController
 
 	private
 
-		def employee_params_for_update
+		def employee_params
 			params.require(:employee).permit(:surname, :name, :position, :library_id,
 			 :birthday, :date_of_employment, :education, :patronymic)
-		end
-
-		def employee_params
-			params.require(:employee).permit(:surname, :name, :position)
 		end
 
 end
