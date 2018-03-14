@@ -1,43 +1,45 @@
 
 <div class="my-4">
-	<h1>Отчеты</h1>
+	<h3>Составить отчет книг, которые были задейстованы в раздачи</h3>
 </div>
 
+
 <div>
-	<form action="/reports" method="get">
+	<%= form_tag("/reports", method: "get") do %>
 		<div class="form-group row">
-			<label for="models" class="col-sm-1 col-form-label">Моделька</label>
+			<label for="date_start_on" class="col-sm-2 col-form-label">С какого числа</label>
 			<div class="col-sm-3">
-				<select id="models" class="form-control"  name="model">
-					<option value="books">Книги</option>
-					<option value="employees">Сотрудники</option>
-					<option value="subscribers">Абоненты</option>
-				</select>
+				<%= date_field("date", "start_on", max: Date.today, class: "form-control", value: @start_on) %>
 			</div>
-			<label for="do" class="col-sm-1 col-form-label">Действие</label>
+			<label for="date_end_on" class="col-sm-2 col-form-label">по какое число</label>
 			<div class="col-sm-3">
-				<select id="do" class="form-control" name="do">
-					<option value="created_at DESC">Новые</option>
-					<option value="updated_at DESC">Обновленные недавно</option>
-					<option value="created_at">Старые</option>
-				</select>
+				<%= date_field("date", "end_on", max: Date.today, class: "form-control", value: @end_on) %>
 			</div>
 			<div class="col-sm-2">
 				<input type="submit" name="commit" value="Потвердить" class="btn btn-primary">
 			</div>
 		</div>
-		
-	</form>
+	<% end %>
 </div>
 
 <div id="content">
 
+	<% if defined?(@error_message) %>
+		<div class="alert alert-danger" role="alert">
+  			<%= @error_message %>
+		</div>
+	<% end %>
+
+	<% if defined?(@books) %>
+		<%= render 'books', books: @books %>
+	<% end %>
+	
 </div>
 
 <script type="text/javascript">
 	
 
-$('form').submit(function (e) {
+/*$('form').submit(function (e) {
     e.preventDefault();
     var optionValue = $("#models option:selected").val();
     var actionValue = $("#do option:selected").val();
@@ -52,6 +54,7 @@ $('form').submit(function (e) {
         	console.log(data);
         }
     });
-});
+});*/
+
 
 </script>

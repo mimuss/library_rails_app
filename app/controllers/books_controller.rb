@@ -46,7 +46,8 @@ class BooksController < ApplicationController
 		@library = Library.find(params[:library_id])
 		Grant.where(book_id: params[:id]).destroy_all
 		@library.books.find(params[:id]).destroy
-		redirect_to library_books_path(@library)
+		#redirect_to library_books_path(@library)
+		redirect_to request.env["HTTP_REFERER"]
 	end
 
 	private

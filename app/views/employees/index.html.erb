@@ -1,6 +1,12 @@
 
 <div class="my-4">
-	<h1>Сотрудники</h1>
+	<% if @employees.count >= 1 %>
+		<h1>Сотрудники</h1>
+	<% else %>
+	<div class="alert alert-dark" role="alert">
+  		Сотрудников нет
+	</div>
+<% end %>
 	<% if @library %>
 		<%= link_to "Добавить", new_library_employee_path(@library) %>
 	<% end %>

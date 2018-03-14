@@ -1,0 +1,21 @@
+<%= form_tag("/reports", method: "get") do %>
+<div class="form-group row">
+ 	 <label for="models" class="col-sm-1 col-form-label">Моделька</label>
+ 	 <div class="col-sm-3">
+ 	 	<select id="models" class="form-control"  name="model">
+ 			 <%= options_for_select([['Книги', :books], ['Сотрудники', :employees], ['Абоненты', :employees]], @model) %>
+ 		</select>
+ 	</div>
+	<label for="do" class="col-sm-1 col-form-label">Действие</label>
+			<div class="col-sm-3">
+				<select id="do" class="form-control" name="do">
+					<%= options_for_select([['Новые', "created_at DESC"], 
+										['Обновленные недавно', "updated_at DESC"],
+										 ['Старые', "created_at"]], @doing) %>
+				</select>
+			</div>
+ 	<div class="col-sm-2">
+		<input type="submit" name="commit" value="Потвердить" class="btn btn-primary">
+	</div>
+</div>
+<% end %>

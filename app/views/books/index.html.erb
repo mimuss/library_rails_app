@@ -1,6 +1,12 @@
 
 	<div class="my-4">
-		<h1>Книги</h1>
+		<% if @books.count >= 1 %>
+			<h1>Книги</h1>
+		<% else %>
+		<div class="alert alert-dark" role="alert">
+  			Книг нет
+		</div>
+		<% end %>
 		<% if defined?(@library) %>
 			<%= link_to 'Добавить', new_library_book_path %>
 		<% end %>

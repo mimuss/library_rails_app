@@ -47,6 +47,8 @@ en:
         name: "Имя"
         surname: "Фамилия"
         address: "Адрес"
+        phone: "Телефон"
+        number: "Номер"
       grant:
         date: "Дата выдачи"
 
