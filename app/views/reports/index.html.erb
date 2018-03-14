@@ -7,15 +7,23 @@
 <div>
 	<%= form_tag("/reports", method: "get") do %>
 		<div class="form-group row">
-			<label for="date_start_on" class="col-sm-2 col-form-label">С какого числа</label>
+			<label for="date_start_on" class="col-sm-1 col-form-label">Начало</label>
 			<div class="col-sm-3">
 				<%= date_field("date", "start_on", max: Date.today, class: "form-control", value: @start_on) %>
 			</div>
-			<label for="date_end_on" class="col-sm-2 col-form-label">по какое число</label>
+			<label for="date_end_on" class="col-sm-1 col-form-label">Конец</label>
 			<div class="col-sm-3">
 				<%= date_field("date", "end_on", max: Date.today, class: "form-control", value: @end_on) %>
 			</div>
-			<div class="col-sm-2">
+			<label for="date_end_on" class="col-sm-1 col-form-label">Сорт</label>
+			<div class="col-sm-2"> 
+				<select class="form-control"  name="sort[sort_on]">
+					<%= options_for_select([['По дате создания (убыв)', "created_at_desc"], 
+											['По дате создания (возр)', "created_at"],
+											['По имени', 'name']], @sort_on) %>
+				</select>
+			</div>
+			<div class="col-sm-1">
 				<input type="submit" name="commit" value="Потвердить" class="btn btn-primary">
 			</div>
 		</div>

@@ -1,6 +1,3 @@
-
-
-
 <table class="table table-hover">
   <thead>
     <tr>
@@ -12,6 +9,8 @@
       <th>Издательство</th>
       <th>Дата издания</th>
       <th>Дата поступления</th>
+      <th>Дата выдачи</th>
+      <th>Абонент</th>
     </tr>
   </thead>
   <tbody>
@@ -21,10 +20,12 @@
 			<td><%= book.name %></td>
 			<td><%= book.author %></td>
 			<td><%= book.cipher %></td>
-			<td><%= book.library.name %></td>
+			<td><%= Library.find(book.library_id).name %></td>
 			<td><%= book.publisher %></td>
 			<td><%= book.published_date %></td>
 			<td><%= book.release_date %></td>
+      <td><%= book.grants_date.to_date %></td>
+      <td><%= book.subscribers_surname %> <%= book.subcribers_name %></td>
 		</tr>
 		<% end %>
   </tbody>
