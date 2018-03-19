@@ -21,7 +21,7 @@ class ReportsController < ApplicationController
 
 		if check_report_book_params
 
-			@books = Grant.joins(:subscriber, book: :library).where('grants.date' => Date.new(2000,1,1)..Date.today).select('books.*, 
+			@books = Grant.joins(:subscriber, book: :library).where('grants.date' => @start_on..@end_on).select('books.*, 
 				grants.date as grants_date, subscribers.name as subcribers_name, 
 				subscribers.surname as subscribers_surname, books.library_id as books_library_id')
 			if params.has_key?(:sort) and @@sorted_valeus.has_key?(params[:sort][:sort_on])
