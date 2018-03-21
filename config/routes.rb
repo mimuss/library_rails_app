@@ -19,11 +19,14 @@ Rails.application.routes.draw do
   end
 
   resources :reports, only: [:index]
+  resources :books, only: [:new, :create]
 
   root to: "libraries#index"
 
   get '/all_employees' => 'employees#all_employees', as: 'all_employees'
+
   get '/all_books' => 'books#all_books', as: 'all_books'
+
   get '/reports/ajax' => 'reports#ajax', as: 'reports_ajax'
 
 end

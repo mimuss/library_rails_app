@@ -7,8 +7,21 @@
 		</div>
 	<% end %>
 	<%= link_to 'Добавить', new_library_path %>
+
 </div>
 
+  <form method="get">
+    <div class="form-group row">
+      <div class="col-4 col-sm-4">
+        <select  id="select2-search" style="width: 100%;" name="libraries[]" multiple="multiple">
+          <%= options_from_collection_for_select(Library.all, :id, :name) %>
+        </select>
+      </div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary">Искать</button>
+      </div>
+    </div>
+  </form>
 
 <% @libraries.each do |library| %>
 	<div class="card mb-4">
@@ -20,13 +33,22 @@
 			<%= link_to "Абоненты", library_subscribers_path(library), :class => "card-link" %>
 		</div>
 		<div class="card-footer text-muted">
-			<%= library.address %> <% if library.number%> #<% end %> <%= library.number %> 
+			<%= library.address %> <% if library.number%> №<% end %> <%= library.number %>
 			<span style="float: right;">
 				<%= link_to 'Редактировать', edit_library_path(library), :class => "card-link" %>
-				<%= link_to 'Удалить', library_path(library), :class => "card-link text-danger", method: :delete, data: { confirm: "Are you sure to delte?" } %>
+				<%= link_to 'Удалить', library_path(library), :class => "card-link text-danger",
+                    method: :delete, data: { confirm: "Are you sure to delte?" } %>
 			</span>
 			
 		</div>
 	</div>
 <% end %>
+
+<script>
+    $(document).ready(function() {
+        $('#select2-search').select2({
+            placeholder: "Библиотеки..."
+        });
+    });
+</script>
 

@@ -22,9 +22,9 @@
 			<td><%= book.cipher %></td>
 			<td><%= Library.find(book.library_id).name %></td>
 			<td><%= book.publisher %></td>
-			<td><%= book.published_date %></td>
-			<td><%= book.release_date %></td>
-      <td><%= book.grants_date.to_date %></td>
+			<td><%= book.published_date.strftime('%d-%m-%Y')  %></td>
+			<td><%= book.release_date.strftime('%d-%m-%Y')  %></td>
+      <td><%= book.grants_date.to_date.strftime('%d-%m-%Y')  %></td>
       <td><%= book.subscribers_surname %> <%= book.subcribers_name %></td>
 		</tr>
 		<% end %>

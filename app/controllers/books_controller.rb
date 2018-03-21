@@ -1,18 +1,28 @@
 class BooksController < ApplicationController
 
 	def all_books
-		@books = Book.all
+		if params.has_key?(:books)
+			@books = Book.where(id: book_ids)
+		else
+			@books = Book.all
+		end
 		render 'index'
 	end
 
 	def index
-		@books = Book.where(library_id: params[:library_id])
+		if params.has_key?(:books)
+			@books = Book.where(library_id: params[:library_id], id: book_ids)
+		else
+			@books = Book.where(library_id: params[:library_id])
+		end
 		@library = Library.find(params[:library_id])
 	end
 
 	def new
 		@book = Book.new
-		@library = Library.find(params[:library_id])
+		if params.has_key?(:library_id)
+			@library = Library.find(params[:library_id])
+		end
 	end
 
 	def edit 
@@ -33,13 +43,20 @@ class BooksController < ApplicationController
 	end
 
 	def create
-		@library = Library.find(params[:library_id])
-		@book = @library.books.new(book_params)
-		if @book.save
+		if params.has_key?(:library_id)
+			@library = Library.find(params[:library_id])
+			@book = @library.books.new(book_params)
+		else
+			@book = Book.new(book_params_without_library)
+		end
+		if @book.save and defined?(@library)
 			redirect_to library_books_path(@library)
+		elsif not defined?(@library) and @book.save
+			redirect_to all_books_path
 		else
 			render 'new'
 		end
+
 	end
 
 	def destroy 
@@ -52,7 +69,15 @@ class BooksController < ApplicationController
 
 	private
 
-		def book_params
-			params.require(:book).permit(:name, :cipher, :author, :publisher, :published_date, :price, :release_date)
-		end
+	def book_ids
+		params[:books].map {|book_id| Integer(book_id)}
+	end
+
+	def book_params_without_library
+		params.require(:book).permit(:name, :cipher, :author, :publisher, :published_date, :price, :release_date, :library_id)
+	end
+
+	def book_params
+		params.require(:book).permit(:name, :cipher, :author, :publisher, :published_date, :price, :release_date)
+	end
 end

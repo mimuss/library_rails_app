@@ -1,12 +1,20 @@
 class EmployeesController < ApplicationController
 
 	def index
-		@employees = Employee.where(library_id: params[:library_id])
-		@library = Library.find(params[:library_id])
+		if params.has_key?(:employees)
+			@employees = Employee.where(id: employee_ids, library_id: params[:library_id])
+		else
+			@employees = Employee.where(library_id: params[:library_id])
+		end
+			@library = Library.find(params[:library_id])
 	end
 
 	def all_employees
-		@employees = Employee.all
+		if params.has_key?(:employees)
+			@employees = Employee.where(id: employee_ids)
+		else
+			@employees = Employee.all
+		end
 		render 'index'
 	end
 
@@ -50,6 +58,10 @@ class EmployeesController < ApplicationController
 	end
 
 	private
+
+		def employee_ids
+			params[:employees].map { |em_id| Integer(em_id)}
+		end
 
 		def employee_params
 			params.require(:employee).permit(:surname, :name, :position, :library_id,

@@ -39,6 +39,7 @@ en:
       book:
         name: "Имя"
         cipher: "Код"
+        library: "Библиотека"
       employee:
         name: "Имя"
         surname: "Фамилия"

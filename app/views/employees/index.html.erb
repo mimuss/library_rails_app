@@ -12,5 +12,29 @@
 	<% end %>
 </div>
 
+<form method="get">
+  <div class="form-group row">
+    <div class="col-4 col-sm-4">
+      <select id="select2-search" style="width: 100%;" name="employees[]" multiple="multiple">
+        <% if defined?(@library) %>
+          <%= options_from_collection_for_select(Employee.where(library: @library), :id, :name) %>
+        <% else %>
+          <%= options_from_collection_for_select(Employee.all, :id, :name) %>
+        <% end %>
+      </select>
+    </div>
+    <div class="col-sm-2">
+      <button type="submit" class="btn btn-primary">Искать</button>
+    </div>
+  </div>
+</form>
+
+<script>
+    $(document).ready(function() {
+        $('#select2-search').select2({
+            placeholder: "Сотрудники..."
+        });
+    });
+</script>
 
 <%= render 'main_content' %>

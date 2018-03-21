@@ -9,9 +9,35 @@
 		<% end %>
 		<% if defined?(@library) %>
 			<%= link_to 'Добавить', new_library_book_path %>
-		<% end %>
+		<% else %>
+      <%= link_to 'Добавить', new_book_path %>
+    <% end %>
 	</div>
 
+  <form method="get">
+    <div class="form-group row">
+      <div class="col-4 col-sm-4">
+        <select id="select2-search" style="width: 100%;" name="books[]" multiple="multiple">
+          <% if defined?(@library) %>
+            <%= options_from_collection_for_select(Book.where(library: @library), :id, :name) %>
+          <% else %>
+            <%= options_from_collection_for_select(Book.all, :id, :name) %>
+          <% end %>
+        </select>
+      </div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary">Искать</button>
+      </div>
+    </div>
+  </form>
+
+  <script>
+      $(document).ready(function() {
+          $('#select2-search').select2({
+              placeholder: "Книги..."
+          });
+      });
+  </script>
 
 <%= render 'main_content' %>
 

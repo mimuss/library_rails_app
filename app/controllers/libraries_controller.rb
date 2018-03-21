@@ -1,7 +1,12 @@
 class LibrariesController < ApplicationController
 
   	def index
-  		@libraries = Library.all
+      if (params.has_key?(:libraries))
+        ids = params[:libraries].map{ |lib| Integer(lib) }
+        @libraries = Library.where(id: ids)
+      else
+        @libraries = Library.all
+      end
   	end
 
 	def new
@@ -37,6 +42,7 @@ class LibrariesController < ApplicationController
 	end
 
 	private
+
 		def library_params
 			params.require(:library).permit(:name, :address, :description, :number)
 		end
