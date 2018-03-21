@@ -1,36 +1,57 @@
-<div class="form-group">
-    <%= form.label :name, "Имя" %><br>
-    <%= form.text_field :name, class: "form-control" %>
+<div class="form-group row">
+    <%= form.label :name, "Имя", class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-5">
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    
   </div>
 
-    <div class="form-group">
-    <%= form.label :surname, "Фамилия" %><br>
-    <%= form.text_field :surname, class: "form-control" %>
+    <div class="form-group row">
+    <%= form.label :surname, "Фамилия", class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-5">
+      <%= form.text_field :surname, class: "form-control" %>
+    </div>
+    
   </div>
  
-  <div class="form-group">
-    <%= form.label :patronymic, "Отчество" %><br>
-    <%= form.text_field :patronymic, class: "form-control" %>
+  <div class="form-group row">
+    <%= form.label :patronymic, "Отчество", class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-5">
+      <%= form.text_field :patronymic, class: "form-control" %>
+    </div>
+    
   </div>
 
-  <div class="form-group">
-    <%= form.label :birthday, "Дата рождения" %><br>
-    <%= form.date_field :birthday, class: "form-control", max: Date.today %>
+  <div class="form-group row">
+    <%= form.label :birthday, "Дата рождения", class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-5">
+      <%= form.date_field :birthday, class: "form-control", max: Date.today %>
+    </div>
+    
   </div>
 
-  <div class="form-group">
-    <%= form.label :date_of_employment, "Дата принятия на работу" %><br>
-    <%= form.date_field :date_of_employment, class: "form-control", max: Date.today %>
+  <div class="form-group row">
+    <%= form.label :date_of_employment, "Дата принятия на работу", class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-5">
+      <%= form.date_field :date_of_employment, class: "form-control", max: Date.today %>
+    </div>
+    
   </div>
 
-  <div class="form-group">
-    <%= form.label :education, "Образование" %><br>
-    <%= form.text_field :education, class: "form-control" %>
+  <div class="form-group row">
+    <%= form.label :education, "Образование", class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-5">
+      <%= form.text_field :education, class: "form-control" %>
+    </div>
+    
   </div>
 
 
 
-  <div class="form-group">
-    <%= form.label :position, "Должность" %><br>
-    <%= form.text_field :position, class: "form-control" %>
+  <div class="form-group row">
+    <%= form.label :position, "Должность", class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-5">
+      <%= form.text_field :position, class: "form-control" %>
+    </div>
+    
   </div>

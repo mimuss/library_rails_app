@@ -4,8 +4,11 @@
  
  <%= render 'form_elements', form: form %>
 
-  <div class="form-group">
-    <%= form.submit "Потвердить", class: "btn btn-primary" %>
+  <div class="form-group row">
+  	<div class="col-sm-2 offset-sm-2">
+  		<%= form.submit "Потвердить", class: "btn btn-primary" %>
+  	</div>
+    
   </div>
  
 <% end %>

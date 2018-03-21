@@ -1,39 +1,63 @@
-  <div class="form-group">
-    <%= form.label :name, "Название" %><br>
-    <%= form.text_field :name, :class => "form-control" %>
+  <div class="form-group row">
+    <%= form.label :name, "Название" , class: "col-sm-2 col-form-label"%>
+    <div class="col-sm-5">
+      <%= form.text_field :name, :class => "form-control" %>
+    </div>
+    
   </div>
  
 
-  <div class="form-group">
-    <%= form.label :cipher, "Код" %><br>
-    <%= form.text_field :cipher, :class => "form-control" %>
+  <div class="form-group row">
+    <%= form.label :cipher, "Код" , class: "col-sm-2 col-form-label"%>
+    <div class="col-sm-5">
+      <%= form.text_field :cipher, :class => "form-control" %>
+    </div>
+    
   </div>
 
-<div class="form-group">
-    <%= form.label :publisher, "Издательство" %><br>
-    <%= form.text_field :publisher, :class => "form-control" %>
+<div class="form-group row">
+    <%= form.label :publisher, "Издательство" , class: "col-sm-2 col-form-label"%>
+    <div class="col-sm-5">
+      <%= form.text_field :publisher, :class => "form-control" %>
+    </div>
+    
   </div>
 
-  <div class="form-group">
-    <%= form.label :author, "Автор" %><br>
-    <%= form.text_field :author, :class => "form-control" %>
+  <div class="form-group row">
+    <%= form.label :author, "Автор" , class: "col-sm-2 col-form-label"%>
+    <div class="col-sm-5">
+      <%= form.text_field :author, :class => "form-control" %>
+    </div>
+    
   </div>
 
-<div class="form-group">
-    <%= form.label :published_date, "Год издания" %><br>
-    <%= form.date_field :published_date, class: "form-control", max: Date.today %>
+<div class="form-group row">
+    <%= form.label :published_date, "Год издания" , class: "col-sm-2 col-form-label"%>
+    <div class="col-sm-5">
+      <%= form.date_field :published_date, class: "form-control", max: Date.today %>
+    </div>
+    
   </div>
 
-  <div class="form-group">
-    <%= form.label :release_date, "Дата поступления" %><br>
-    <%= form.date_field :release_date, class: "form-control", max: Date.today %>
+  <div class="form-group row">
+    <%= form.label :release_date, "Дата поступления" , class: "col-sm-2 col-form-label"%>
+    <div class="col-sm-5">
+      <%= form.date_field :release_date, class: "form-control", max: Date.today %>
+    </div>
+    
   </div>
 
-   <div class="form-group">
-    <%= form.label :price, "Цена"%><br>
-    <%= form.number_field :price, :class => "form-control", :step => 0.01 %>
+   <div class="form-group row">
+    <%= form.label :price, "Цена", class: "col-sm-2 col-form-label"%>
+    <div class="col-sm-5">
+      <%= form.number_field :price, :class => "form-control", :step => 0.01 %>
+    </div>
+    
   </div>
 
-  <div class="form-group">
-    <%= form.submit "Потвердить", :class => "btn btn-primary" %>
+  <div class="form-group row">
+    <div class="offset-sm-2 col-sm-2">
+      <%= form.submit "Потвердить", :class => "btn btn-primary" %>
+    </div>
+    
   </div>
