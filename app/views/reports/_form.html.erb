@@ -9,9 +9,10 @@
 	<label for="do" class="col-sm-1 col-form-label">Действие</label>
 			<div class="col-sm-3">
 				<select id="do" class="form-control" name="do">
-					<%= options_for_select([['Новые', "created_at DESC"], 
+					<%= options_for_select([['Новые', "created_at DESC"],
 										['Обновленные недавно', "updated_at DESC"],
-										 ['Старые', "created_at"]], @doing) %>
+										 ['Старые', "created_at"],
+                                  ['Топ', "top"]], @doing) %>
 				</select>
 			</div>
  	<div class="col-sm-2">

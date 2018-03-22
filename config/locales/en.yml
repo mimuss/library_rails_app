@@ -35,7 +35,7 @@ en:
       library:
         number: "Номер"
         address: "Адрес"
-        name: "Имя"
+        name: "Название"
       book:
         name: "Имя"
         cipher: "Код"

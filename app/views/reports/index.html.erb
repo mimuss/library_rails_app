@@ -15,12 +15,13 @@
 			<div class="col-sm-3">
 				<%= date_field("date", "end_on", max: Date.today, class: "form-control", value: @end_on) %>
 			</div>
-			<label for="date_end_on" class="col-sm-1 col-form-label">Сорт</label>
+			<label for="date_end_on" class="col-sm-1 col-form-label">Отчет</label>
 			<div class="col-sm-2"> 
 				<select class="form-control"  name="sort[sort_on]">
-					<%= options_for_select([['По дате создания (убыв)', "created_at_desc"], 
-											['По дате создания (возр)', "created_at"],
-											['По имени', 'name']], @sort_on) %>
+					<%= options_for_select([['Сорт по дате создания (убыв)', "created_at_desc"],
+											['Сорт по дате создания (возр)', "created_at"],
+											['Сорт по имени', 'name'],
+                                 ['Топ', "top"]], @sort_on) %>
 				</select>
 			</div>
 			<div class="col-sm-1">
@@ -41,6 +42,10 @@
 	<% if defined?(@books) %>
 		<%= render 'books', books: @books %>
 	<% end %>
+
+  <% if defined?(@top_books) %>
+    <%= render 'top_books', books: @top_books %>
+  <% end %>
 	
 </div>
 

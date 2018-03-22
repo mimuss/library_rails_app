@@ -20,12 +20,15 @@ class ReportsController < ApplicationController
 
 
 		if check_report_book_params
-
-			@books = Grant.joins(:subscriber, book: :library).where('grants.date' => @start_on..@end_on).select('books.*, 
-				grants.date as grants_date, subscribers.name as subcribers_name, 
-				subscribers.surname as subscribers_surname, books.library_id as books_library_id')
 			if params.has_key?(:sort) and @@sorted_valeus.has_key?(params[:sort][:sort_on])
-				@books = @books.order(@@sorted_valeus[sort_params[:sort_on]])
+				@books = Grant.joins(:subscriber, book: :library).where('grants.date' => @start_on..@end_on).select('books.*,
+				grants.date as grants_date, subscribers.name as subcribers_name,
+				subscribers.surname as subscribers_surname, books.library_id as books_library_id').order(@@sorted_valeus[sort_params[:sort_on]])
+			elsif params.has_key?(:sort) and params[:sort][:sort_on] == "top"
+				@top_books = Grant.joins(:book).where('grants.date' => @start_on..@end_on).select('books.*').group(:name, :cipher, :author, :publisher, :price).count()
+				@top_books.each do |key, value|
+					key.map {|val| val.to_s.gsub('.', ',') if val.class == Float}
+				end
 			end
 		else
 			@error_message = "Неправильно введены даты"
