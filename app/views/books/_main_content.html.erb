@@ -10,14 +10,14 @@
 			</span>
 			 </p>
 			<% if book.published_date.present? %>
-				<p class="card-text">Год издания: <span class="text-muted"><%= book.published_date.strftime('%d-%m-%Y') %></span> 
+				<p class="card-text">Дата издания: <span class="text-muted"><%= book.formatted_published_date %></span>
 					<% if book.release_date.present? %>, 
-						Год поступления: <span class="text-muted"> <%= book.release_date.strftime('%d-%m-%Y') %></span>
+						Дата поступления: <span class="text-muted"> <%= book.formatted_release_date %></span>
 					<% end %>
 				</p>
 			<% end %>
 			<% if book.price.present? %>
-				<p class="card-text">Цена: <span class="text-muted"><%= book.price %></span> </p>
+				<p class="card-text">Цена: <span class="text-muted"><%= book.price_to_comma %></span> </p>
 			<% end %>
 			
 		</div>

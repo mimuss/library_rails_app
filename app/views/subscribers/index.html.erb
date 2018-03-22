@@ -1,9 +1,9 @@
 <div class="my-4">
 	<% if @subscribers.count >= 1 %>
-			<h1>Абоненты</h1>
+			<h1>Абонементы</h1>
 	<% else %>
 		<div class="alert alert-dark" role="alert">
-  			Абонентов нет
+        Абонементов нет
 		</div>
 	<% end %>
 	<%= link_to 'Добавить', new_library_subscriber_path(@library) %>

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :reports, only: [:index]
   resources :books, only: [:new, :create]
-
+  resources :employees, only: [:new, :create]
   root to: "libraries#index"
 
   get '/all_employees' => 'employees#all_employees', as: 'all_employees'

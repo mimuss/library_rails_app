@@ -9,7 +9,9 @@
 <% end %>
 	<% if @library %>
 		<%= link_to "Добавить", new_library_employee_path(@library) %>
-	<% end %>
+	<% else %>
+    <%= link_to "Добавить", new_employee_path %>
+  <% end %>
 </div>
 
 <form method="get">

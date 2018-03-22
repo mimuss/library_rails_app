@@ -8,6 +8,8 @@
 	<% end %>
 	<%= link_to 'Добавить', new_library_path %>
 
+
+
 </div>
 
   <form method="get">
@@ -30,7 +32,7 @@
 			<p class="card-text"><%= library.description %></p>
 			<%= link_to 'Книги', library_books_path(library), :class => "card-link" %>
 			<%= link_to 'Сотрудники', library_employees_path(library), :class => "card-link" %>
-			<%= link_to "Абоненты", library_subscribers_path(library), :class => "card-link" %>
+			<%= link_to "Абонементы", library_subscribers_path(library), :class => "card-link" %>
 		</div>
 		<div class="card-footer text-muted">
 			<%= library.address %> <% if library.number%> №<% end %> <%= library.number %>

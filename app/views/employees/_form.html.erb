@@ -1,14 +1,10 @@
-<%= form_with(model: [@library, @library.employees.build], local: true) do |form| %> 
+
+<%= form_for @employee, url: employees_path, local: true do |form| %>
  
  <%= render 'layouts/form_error', value: @employee %>
  
  <%= render 'form_elements', form: form %>
 
-  <div class="form-group row">
-  	<div class="col-sm-2 offset-sm-2">
-  		<%= form.submit "Потвердить", class: "btn btn-primary" %>
-  	</div>
-    
-  </div>
- 
+
+
 <% end %>

@@ -20,41 +20,34 @@ class EmployeesController < ApplicationController
 
 	def new
 		@employee = Employee.new
-		@library = Library.find(params[:library_id])
-	end
-
-	def edit
-		@library = Library.find(params[:library_id])
-		@employee = @library.employees.find(params[:id])
-		@libraries = Library.all
-	end
-
-	def update
-		@library = Library.find(params[:library_id])
-		@employee = @library.employees.find(params[:id])
-		@libraries = Library.all
-		if @employee.update(employee_params)
-			redirect_to library_employees_path(@library)
-		else
-			render 'edit'
-		end
 	end
 
 	def create
-		@library = Library.find(params[:library_id])
-		@employee = @library.employees.new(employee_params)
+		@employee = Employee.new(employee_params)
 		if @employee.save
-			redirect_to library_employees_path(@library)
+			redirect_to library_employees_path(@employee.library)
 		else
 			render 'new'
 		end
 	end
 
+	def edit
+		@employee = Employee.find(params[:id])
+	end
+
+	def update
+		@employee = Employee.find(params[:id])
+		if @employee.update(employee_params)
+			redirect_to library_employees_path(@employee.library)
+		else
+			render 'edit'
+		end
+	end
+
 	def destroy
-		@library = Library.find(params[:library_id])
-		@employee = @library.employees.find(params[:id])
+		@employee = Employee.find(params[:id])
 		@employee.destroy
-		redirect_to library_employees_path(@library)
+		redirect_to library_employees_path(@employee.library)
 	end
 
 	private
@@ -65,7 +58,7 @@ class EmployeesController < ApplicationController
 
 		def employee_params
 			params.require(:employee).permit(:surname, :name, :position, :library_id,
-			 :birthday, :date_of_employment, :education, :patronymic)
+			 :birthday, :date_of_employment, :education, :patronymic, :library_id)
 		end
 
 end

@@ -5,11 +5,11 @@
 			<h4 class="card-title"> <%= employee.surname %> <%= employee.name %> <%= employee.patronymic %></h4>
 			<p class="card-text">Должность: <span class="text-muted"><%= employee.position %></span></p>
 			<% if employee.birthday.present? %>
-				<p class="card-text">Дата рождения <span class="text-muted"><%= employee.birthday.strftime('%d-%m-%Y') %></span> </p>
+				<p class="card-text">Дата рождения <span class="text-muted"><%= employee.formatted_birthday %></span> </p>
 			<% end %>
 			<% if employee.date_of_employment.present? %>
 				<p class="card-text">Дата принятия на работу: 
-					<span class="text-muted"> <%= employee.date_of_employment.strftime('%d-%m-%Y') %></span></p>
+					<span class="text-muted"> <%= employee.formatted_date_of_employment %></span></p>
 			<% end %>
 			<% if employee.education.present? %>
 				<p class="card-text">Образование: <span class="text-muted"> <%= employee.education %></span></p>

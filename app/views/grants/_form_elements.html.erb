@@ -1,25 +1,38 @@
-<div class="form-group">
-    <%= form.label :date, "Дата выдачи" %><br>
+<div class="form-group row">
+  <%= form.label :date, "Дата выдачи", class: "col-sm-2 col-form-label" %>
+  <div class="col-sm-5">
     <%= form.date_field :date, class: "form-control", max: Date.today %>
   </div>
- 
-<div class="form-group">
-    <%= form.label :date_of_return, "Дата возврата" %><br>
+</div>
+
+<div class="form-group row">
+  <%= form.label :date_of_return, "Дата возврата", class: "col-sm-2 col-form-label" %>
+  <div class="col-sm-5">
     <%= form.date_field :date_of_return, class: "form-control", min: Date.today %>
   </div>
+</div>
 
- <% if @books %>
-  <div class="form-group">
-   <%= form.collection_select(:book_id, @books, :id, :name, {prompt: "Выберите книгу"}, {class: "form-control"} ) %>
-  </div>
- <% end %>
-
-<% if @subscribers %>
- <div class="form-group">
-  <%= form.collection_select(:subscriber_id, @subscribers, :id, :name, {prompt: "Выберите абонента"}, {class: "form-control"} )%>
+<% if @books %>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="grant_book_id">Книга</label>
+    <div class="col-sm-5">
+      <%= form.collection_select(:book_id, @books, :id, :name, {prompt: "Выберите книгу"}, {class: "form-control"}) %>
+    </div>
   </div>
 <% end %>
 
-  <div class="form-group">
-    <%= form.submit "Потвердить", class: "btn btn-primary" %>
+<% if @subscribers %>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="grant_subscriber_id">Абонемент</label>
+    <div class="col-sm-5">
+      <%= form.collection_select(:subscriber_id, @subscribers, :id, :name, {prompt: "Выберите абонемент"}, {class: "form-control"}) %>
+    </div>
   </div>
+<% end %>
+
+<div class="form-group row">
+  <div class=" offset-sm-2 col-sm-2">
+    <%= form.submit "Подтвердить", class: "btn btn-primary" %>
+  </div>
+
+</div>

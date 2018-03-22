@@ -44,6 +44,7 @@ en:
         name: "Имя"
         surname: "Фамилия"
         position: "Должность"
+        library: "Библиотека"
       subscriber:
         name: "Имя"
         surname: "Фамилия"
