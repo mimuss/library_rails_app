@@ -1,4 +1,5 @@
-class Subscriber < ApplicationRecord
+class Subscriber
+  include Mongoid::Document
 
 	validates :name, length: { minimum: 2, too_short: "слишком короткое (минимум %{count} символа)"}
 	validates :surname, length: { minimum: 2, too_short: "слишком короткая (минимум %{count} символа)"}
@@ -6,7 +7,13 @@ class Subscriber < ApplicationRecord
 	validates :number, uniqueness: { message: "должен быть уникальным"}
 	validates :phone, presence: { message: "должен присутствовать"}
 
+  field :name,       type: String
+  field :surname,    type: String
+  field :address,    type: String
+  field :phone,      type: Integer
+  field :number,     type: Integer
+  field :patronymic, type: String
 
   belongs_to :library
-  has_many :books, through: :grants
+  has_many :books
 end

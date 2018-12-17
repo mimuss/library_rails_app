@@ -1,6 +1,10 @@
-class Grant < ApplicationRecord
+class Grant
+	include Mongoid::Document
 
 	validates :date, presence: {message: "должна присутствовать"}
+
+	field :date,           type: Date
+	field :date_of_return, type: Date
 
 	belongs_to :book
 	belongs_to :subscriber

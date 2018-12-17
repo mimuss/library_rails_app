@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
 	get '/index' => 'libraries#index'
 
 	resources :libraries do
@@ -18,7 +17,6 @@ Rails.application.routes.draw do
     resources :employees
   end
 
-  resources :reports, only: [:index]
   resources :books, only: [:new, :create]
   resources :employees, only: [:new, :create]
   root to: "libraries#index"
@@ -26,9 +24,6 @@ Rails.application.routes.draw do
   get '/all_employees' => 'employees#all_employees', as: 'all_employees'
 
   get '/all_books' => 'books#all_books', as: 'all_books'
-
-  get '/reports/ajax' => 'reports#ajax', as: 'reports_ajax'
-
 end
 
 
