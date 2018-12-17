@@ -1,5 +1,6 @@
 class Subscriber
   include Mongoid::Document
+  include Mongoid::Attributes::Dynamic
 
 	validates :name, length: { minimum: 2, too_short: "слишком короткое (минимум %{count} символа)"}
 	validates :surname, length: { minimum: 2, too_short: "слишком короткая (минимум %{count} символа)"}

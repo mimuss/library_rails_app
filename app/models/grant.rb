@@ -1,5 +1,6 @@
 class Grant
 	include Mongoid::Document
+	include Mongoid::Attributes::Dynamic
 
 	validates :date, presence: {message: "должна присутствовать"}
 

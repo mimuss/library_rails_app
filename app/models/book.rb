@@ -1,5 +1,6 @@
 class Book
 	include Mongoid::Document
+	include Mongoid::Attributes::Dynamic
 
 	validates :name, length: { minimum: 2, too_short: "слишком короткое (минимум %{count} символа)"}
 	validates :cipher,  length: { minimum: 2, too_short: "слишком короткий (минимум %{count} символа)"}, 
